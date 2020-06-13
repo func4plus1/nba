@@ -48,9 +48,10 @@ t.save('test.ann')
 
 u = AnnoyIndex(f, 'angular')
 u.load('test.ann') # super fast, will just mmap the file
-st.write(u.get_nns_by_item(0, 12)) # will find the 1000 nearest neighbors
 
 
 for i in range(30):
-   st.write( u.get_nns_by_item(i,12))
+    list = [] 
+    list.append(u.get_nns_by_item(i,12))
+    st.write(nba.iloc[list[0]])
 
