@@ -15,14 +15,25 @@ df = df.drop(columns=('index'))
 
 df = df.T
 
-st.markdown('## NBA Team Data 2020 - 2010')
-st.text('Per 100 Possesions')
+'''
+# Nearest Neighbor
+##
+Clustering is a foundational Machine Learning technique.
+
+Nearest Neighbor allows for the curse of dimensionality
+'''
+st.markdown('![Nearest Neighbor](https://dashee87.github.io/images/em_only.gif)')
+'''
+# NBA Team Data 2020-2010 (per 100)
+##
+
+
+
+Here we have the team data for all NBA teams for the last decade. This totals 331 teams over 21 statistical categories
+##
+'''
 
 st.write(nba)
-
-option = st.selectbox(
-    'Which team  do you like best?',
-     nba['Team'])
 
 st.vega_lite_chart(nba,{
     'width': 600,
@@ -48,7 +59,6 @@ t.save('test.ann')
 
 u = AnnoyIndex(f, 'angular')
 u.load('test.ann') # super fast, will just mmap the file
-
 
 for i in range(30):
     list = [] 
