@@ -16,13 +16,26 @@ df = df.drop(columns=('index'))
 df = df.T
 
 '''
-# Nearest Neighbor
+# Clustering 
 ##
-Clustering is a foundational Machine Learning technique.
+Clustering is a foundational Machine Learning technique underlying many advances in Artificial Intelligence. In combination with other approaches, clustering has provided a base upon which computational intellgience has been able to surpass human level performance on certain tasks. 
 
-Nearest Neighbor allows for the curse of dimensionality
+Due to the simplicity and clearly explainable results of it's models, we find clustering not only in research, but more importantly, at the heart of successful ML commerical applications solving real world problems. 
+
+![Spam](https://www.spam.com/wp-content/uploads/2019/09/image-product_spam-classic-12oz-420x420.png)
+
+K-Means Nearest Neighbor is often recognized as one of the most popular form of clustering for production application. Data is interpreted into K number of like groups allowing discovery of patterns within huge scale in production relevant time. 
+
+## 
+
+![Nearest Neighbor](https://dashee87.github.io/images/em_only.gif)')
+
+While Nearest Neighbor and it's cousin clustering approaches often provide top of the line performance, while also excelling in explainability and maintainability, there are limitations.
+
+As data grows, it becomes increasingly difficult to fit nearest neighbor models into memory space and processing power beings to falter in production. Named *"The Curse of Dimensonality"*, a fatal flaw for Nearest Neighbor is data growing simultaneously in increased complexity and 
+universal application of clustering for every problem is not possible. The limiations of memory space and processing power make it impossible to cluster everywhere. 
 '''
-st.markdown('![Nearest Neighbor](https://dashee87.github.io/images/em_only.gif)')
+
 '''
 # NBA Team Data 2020-2010 (per 100)
 ##

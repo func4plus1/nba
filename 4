@@ -1,0 +1,75 @@
+import pandas as pd
+import annoy 
+from annoy import AnnoyIndex
+import streamlit as st
+import numpy as np 
+nba = pd.read_csv('nba.csv') 
+
+df = pd.read_csv('nba.csv')
+
+df = df.drop(columns=['G','MP', 'Y', 'Team'])
+
+df.reset_index(inplace=True)
+
+df = df.drop(columns=('index'))
+
+df = df.T
+
+'''
+# Nearest Neighbor
+##
+Clustering is a foundational Machine Learning technique underlying many machine learning techniques. In combination with other approaches, clustering has provided a foundation upon which ML has been able to surpass human level performance on certain tasks. 
+
+Due to the simplicity and clearly explainable results of clustering models, we find clustering not only in research but more importantly  at the heart of successful ML commerical applications solving real world problems.  
+
+K-Means Nearest Neighbor is often recognized as the most popular form of clustering. K-Means interprets  data into K number of like groups allowing us to discover what patterns over large scale data in production relevant time. 
+'''
+
+st.markdown('![Nearest Neighbor](https://dashee87.github.io/images/em_only.gif)')
+
+'''
+However universal application of clustering for every problem is not possible. The limiations of memory space and processing power make it impossible to cluster everywhere. 
+'''
+
+'''
+# NBA Team Data 2020-2010 (per 100)
+##
+
+
+
+Here we have the team data for all NBA teams for the last decade. This totals 331 teams over 21 statistical categories
+##
+'''
+
+st.write(nba)
+
+st.vega_lite_chart(nba,{
+    'width': 600,
+    'height': 400,
+    'mark':{'type':'circle', 'tooltip':True},
+    'encoding':{
+        'color': {'field': 'Team', 'type': 'nominal', 'legend': None},
+        'y': {'field': '3PA', 'type': 'quantitative', 'title': '3 Point Attempts'},
+        'x': {'field': 'Y', 'type': 'nominal', 'title': 'Year'},
+    },
+})
+
+
+f = 21
+t = AnnoyIndex(f, 'angular') 
+
+for i in range(330):
+  v = df[i]
+  t.add_item(i,v)
+
+t.build(10)
+t.save('test.ann')
+
+u = AnnoyIndex(f, 'angular')
+u.load('test.ann') # super fast, will just mmap the file
+
+for i in range(30):
+    list = [] 
+    list.append(u.get_nns_by_item(i,12))
+    st.write(nba.iloc[list[0]])
+
